@@ -16,8 +16,11 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void createUsersTable() {
         try (Connection conn = Util.getConnection(); Statement statement = conn.createStatement()) {
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS users " +
-                    "(id BIGINT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50) NOT NULL , last_name VARCHAR(50) NOT NULL , age INT NOT NULL )");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS users (" +
+                    "id BIGINT PRIMARY KEY AUTO_INCREMENT, " +
+                    "name VARCHAR(50) NOT NULL , " +
+                    "last_name VARCHAR(50) NOT NULL , " +
+                    "age INT NOT NULL )");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -55,10 +58,12 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public List<User> getAllUsers() {
-        List<User> users = new ArrayList<>();
 
-        try (Connection conn = Util.getConnection()) {
-            ResultSet resultSet = conn.createStatement().executeQuery("SELECT * FROM users");
+        List<User> users = new ArrayList<>();
+        try (Connection connection = Util.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery("SELECT * FROM users")){
+
             while(resultSet.next()) {
                 User user = new User(resultSet.getString("name"),
                         resultSet.getString("last_name"),
