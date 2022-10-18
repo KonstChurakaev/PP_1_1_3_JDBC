@@ -25,15 +25,16 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
 
-        public void dropUsersTable () {
-            try (Connection conn = Util.getConnection(); Statement statement = conn.createStatement()) {
-                statement.executeUpdate("DROP TABLE IF EXISTS users");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+    public void dropUsersTable() {
+        try (Connection conn = Util.getConnection(); Statement statement = conn.createStatement()) {
+            statement.executeUpdate("DROP TABLE IF EXISTS users");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+    }
 
         public void saveUser (String name, String lastName,byte age){
             try (Connection conn = Util.getConnection(); PreparedStatement pstm = conn.prepareStatement("INSERT INTO users (name, last_name, age) VALUES (?, ?, ?)")) {
@@ -55,7 +56,7 @@ public class UserDaoJDBCImpl implements UserDao {
             }
         }
 
-        public List<User> getAllUsers () {
+    public List<User> getAllUsers() {
 
             List<User> users = new ArrayList<>();
             try (Connection conn = Util.getConnection();
