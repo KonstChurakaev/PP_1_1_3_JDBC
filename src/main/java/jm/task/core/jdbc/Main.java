@@ -1,10 +1,12 @@
 package jm.task.core.jdbc;
 
+import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class Main {
     private final static UserService userService = new UserServiceImpl();
@@ -20,7 +22,10 @@ public class Main {
 
         userService.removeUserById(1);
 
-        userService.getAllUsers();
+        List<User> users = userService.getAllUsers();
+        for (User user : users) {
+            System.out.println(user);
+        }
 
         userService.cleanUsersTable();
 
