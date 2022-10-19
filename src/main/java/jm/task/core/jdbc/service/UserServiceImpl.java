@@ -16,7 +16,6 @@ public class UserServiceImpl implements UserService {
 
     public void dropUsersTable() {
         userDao.dropUsersTable();
-
     }
 
     public void saveUser(String name, String lastName, byte age) {
@@ -30,21 +29,11 @@ public class UserServiceImpl implements UserService {
 
     public List<User> getAllUsers() {
         List<User> users = userDao.getAllUsers();
-//        for (User user : users) {
-//            System.out.println(user);
-//        }
         return users;
     }
 
     public void cleanUsersTable() {
         userDao.cleanUsersTable();
-        List<User> users = userDao.getAllUsers();
-        if (users.isEmpty()){
-            System.out.println("Table cleared");
-        }else {
-            System.out.println("Table not cleared");
-        }
-
     }
 }
 
