@@ -13,9 +13,7 @@ import java.util.Properties;
 
 public class Util {
 
-
     private static Connection connection = null;
-
 
     public static Connection getConnection() {
         try {
@@ -32,7 +30,6 @@ public class Util {
         return connection;
     }
 
-
     private static Properties getProps() throws IOException {
         Properties properties = new Properties();
         try (InputStream in = Files.newInputStream(Paths.get(
@@ -44,6 +41,5 @@ public class Util {
             throw new IOException("Database config file not found", e);
         }
     }
-
 }
 
